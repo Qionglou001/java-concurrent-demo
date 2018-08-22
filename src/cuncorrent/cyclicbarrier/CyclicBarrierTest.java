@@ -10,8 +10,9 @@ import java.util.concurrent.Executors;
  * 例子：假设一组线程都要进行读操作，等所有线程读操作完成后才能进行接下来的操作
  * CountDownLatch与CyclicBarrier区别：
  * 1.CountDownLatch是一个或多个线程等待其他线程都完成某些事情后才开始执行；CyclicBarrier是一组线程之间相互等待，都到达一个屏障点后，所有线程再继续执行；
- * 2.CountDownLatch不可以复用，而CyclicBarrier可以复用。
- * 3.CountDownLatch构造方法只有一个，CyclicBarrier多了一个：设置所有线程到达屏障后优先执行的Runnable对象
+ * 2.CountDownLatch当线程到达countDown()方法后线程该线程还会继续运行，CyclicBarrier当线程到达await()方法后要等待所有线程都到达后才能继续运行;
+ * 3.CountDownLatch不可以循环使用，而CyclicBarrier可以循环使用;
+ * 4.CountDownLatch的基本操作组合是countDown()/await(),CyclicBarrier是await()
  * @author wangjianlou 2018年8月22日
  * @version V1.0
  */
