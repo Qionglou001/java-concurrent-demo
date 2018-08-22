@@ -32,6 +32,7 @@ public class ReentrantlockTest implements Runnable{
         }
     }
 
+	
     public static void main(String[] args) throws InterruptedException {
     	ReentrantlockTest test = new ReentrantlockTest();
         Thread t1 = new Thread(test,"t1");
