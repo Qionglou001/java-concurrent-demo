@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * CyclicBarrier是一个同步工具类，允许一组线程相互之间等待，当所有线程都达到一个屏障点后，所有线程再继续执行。
+ * CyclicBarrier栅栏,是一个同步工具类，允许一组线程相互之间等待，当所有线程都达到一个屏障点后，所有线程再继续执行。
  * 例子：假设一组线程都要进行读操作，等所有线程读操作完成后才能进行接下来的操作
  * CountDownLatch与CyclicBarrier区别：
  * 1.CountDownLatch是一个或多个线程等待其他线程都完成某些事情后才开始执行；CyclicBarrier是一组线程之间相互等待，都到达一个屏障点后，所有线程再继续执行；
