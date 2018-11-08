@@ -15,8 +15,8 @@ public class Test2 {
     //创建一个锁对象
     private Lock lock = new ReentrantLock();
     //创建两个条件变量，一个为缓冲区非满，一个为缓冲区非空
-    private final Condition full = lock.newCondition();
-    private final Condition empty = lock.newCondition();
+    private final Condition producer = lock.newCondition();
+    private final Condition consumer = lock.newCondition();
     
     public static void main(String[] args) {
         Test2 test2 = new Test2();
@@ -43,7 +43,7 @@ public class Test2 {
                 try {
                     while (count == FULL) {
                         try {
-                        	full.await();
+                        	producer.await();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -52,7 +52,7 @@ public class Test2 {
                     System.out.println(Thread.currentThread().getName()
                             + "生产者生产，目前总共有" + count);
                     //唤醒消费者
-                    empty.signal();
+                    consumer.signal();
                 } finally {
                     //释放锁
                     lock.unlock();
@@ -74,7 +74,7 @@ public class Test2 {
                 try {
                     while (count == 0) {
                         try {
-                            empty.await();
+                            consumer.await();
                         } catch (Exception e) {
 
                             e.printStackTrace();
@@ -83,7 +83,7 @@ public class Test2 {
                     count--;
                     System.out.println(Thread.currentThread().getName()
                             + "消费者消费，目前总共有" + count);
-                    full.signal();
+                    producer.signal();
                 } finally {
                     lock.unlock();
                 }

@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * java实现同步机制的另外一种方式，使用ReentrantLock类，
- * 其与synchronized区别：
+ * 其与synchronized区别(lock接口最大的优势是为读和写分别提供了锁)：
  * 1.synchronized是基于jvm底层实现的，lcok是基于jdk实现的；
  * 2.lock可以实现公平锁
  * 3.lock可以响应中断

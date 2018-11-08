@@ -12,7 +12,7 @@ public class Test3 {
 	private static volatile Integer count = 0;
     //创建一个阻塞队列
     final BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<>(10);
-
+    private String lock = "lock"; 
     public static void main(String[] args) {
         Test3 test3 = new Test3();
         new Thread(test3.new Producer()).start();
@@ -35,9 +35,11 @@ public class Test3 {
                 }
                 try {
                     blockingQueue.put(1);
-                    count++;
-                    System.out.println(Thread.currentThread().getName()
+                    synchronized(lock){
+                    	count++;
+                    	System.out.println(Thread.currentThread().getName()
                     			+ "生产者生产，目前总共有" + count);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -57,9 +59,11 @@ public class Test3 {
                 }
                 try {
                     blockingQueue.take();
-                    count--;
-                    System.out.println(Thread.currentThread().getName()
+                    synchronized(lock){
+                    	count--;
+                    	System.out.println(Thread.currentThread().getName()
                     			+ "消费者消费，目前总共有" + count);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
