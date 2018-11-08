@@ -42,7 +42,12 @@ public class ReentrantlockTest implements Runnable{
         t2.start();
         t3.start();
         t4.start();
-        System.err.println(i);
+        
+        t1.join();
+        t2.join();
+        t3.join();
+        t4.join();
+        System.out.println(i);
     }
 	
 }
